@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--  python3 -m http.server -->
+<!--  python3 -m http.server .-->
 <head>
   <meta charset="UTF-8">
   <title>Quote generator homework</title>
@@ -54,10 +54,13 @@
   </footer>
 
   <script>
+
     const quoteText = document.getElementById("quote");
     const authorText = document.getElementById("author");
     const newQuoteBtn = document.getElementById("newQuoteBtn");
 
+      //INPUT YOUR CODE HERE
+      //HINT: Use fetch() to get quote from "quotes.json"
     function getQuote() {
     fetch("quotes.json")
     .then(response => response.json())
@@ -73,10 +76,6 @@
       authorText.textContent = "";
       console.error("Error fetching quotes:", error);
     });
-      //INPUT YOUR CODE HERE
-      //HINT: Use fetch() to get quote from "quotes.json"
-
-
 
     }
     newQuoteBtn.addEventListener("click", getQuote);
