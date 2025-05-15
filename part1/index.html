@@ -62,20 +62,19 @@
      
       //INPUT YOUR CODE HERE
       //HINT: Use fetch() to get quote from "quotes.json"
-      fetch("quotes.json")
-        .then(response => response.json())
-        .then(data => {
-          const randomIndex = Math.floor(Math.random() * data.length);
-          const quote = data[randomIndex];
-          quoteText.textContent = quote.text;
-          authorText.textContent = `— ${quote.author}`;
-        })
-        .catch(error => {
-          console.error("Error fetching the quote:", error);
-          quoteText.textContent = "Failed to load a quote.";
-          authorText.textContent = "";
-        });
-
+      fetch("quotes.json").then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      }).then(data => {
+        const randomIndex = Math.floor(Math.random() * data.length);
+        const quote = data[randomIndex];
+        quoteText.textContent = `"${quote.text}"`;
+        authorText.textContent = `- ${quote.author}`;
+      }).catch(error => {
+        console.error("Error fetching the quote:", error);
+      });
 
     }
     newQuoteBtn.addEventListener("click", getQuote);
